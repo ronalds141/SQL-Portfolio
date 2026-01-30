@@ -1,6 +1,4 @@
 # **Introduction**  
----
-
 
 This project is part of my data analytics portfolio, showcasing my ability to work with large, real-world datasets using SQL, Excel, and data visualization tools. I’m passionate about turning raw data into actionable insights and am open to opportunities in data analytics, data science, and even data engineering.
 
@@ -10,7 +8,6 @@ The goal of this project was to perform a **comprehensive, end-to-end analysis**
 The dataset offers a unique opportunity to explore **real-world, large-scale data** containing millions of reviews, detailed business attributes, geolocation data, and customer feedback spanning multiple years.  
 
 ## **The Dataset**  
----
 
 The dataset contains over **6,000,000 business reviews** from **150'346 businesses** in **27 U.S. states**.  
 The main focus of this research is **restaurants** — exploring their ratings, popularity, and customer feedback trends.  
@@ -27,33 +24,29 @@ Some tables exceeding **15,000,000** rows.
 - How do review counts and ratings change over time for top restaurants?
 
 
----
 
 # **Tools Used**  
----
 + **SQL:** The main tool used to analyze millions of rows efficiently. Specifically, SQLite was used.  
 + **DBeaver:** The chosen database management software.  
 + **Microsoft Excel:** Used to consolidate data and create charts.  
 + **Git & GitHub:** used to share my SQL analysis.  
 
----
-
 # **The Analysis**  
 
 ## Hypothesis
----
 1. Mid-priced restaurants will receive higher average ratings than expensive restaurants, as affordability often correlates with broader customer satisfaction;
 2. Food type will directly correlate to customer satisfaction. Niche food types will be less liked than general cuisines;
 3. User reviews are the driving force behind restaurant success or failure. 
 
 
----
 ## Data Cleanup
----
 This, honestly, was the hardest part. It required a lot of time to clean up the data and create new tables with recursive queries. 
 The data came as JSON files and was imported into DBeaver Database Manager.
 The columns didn’t have column names and looked like this:
-
+|Column1|Column2|Column3|Column4|
+|-----|--------------|-----|------|
+"business_id": "tnhfDv5Il8EaGSXZGiuQGg"|"name": "Garaje"|"address": "475 3rd St"|...
+...
 
 Before I could clean the data, I had to create new tables for each given table with the correct Column Names and data types.
 
@@ -103,6 +96,18 @@ SELECT
 FROM
     YELP_Restaurants;
 ```
+The Result:
+|Business_id|Name|Address|City|State|Postal_Code|Latitude|Longitude|Rating_stars|Review_Count|Is_Open|Attributes|Attributes2|Attributes3|
+|-----------|----|-------|----|-----|-----------|--------|---------|------------|------------|-------|----------|-----------|-----------|
+|Pns2l4eNsfO8kk83dixA6A|Abby Rappoport, LAC, CMQ|1616 Chapala St, Ste 2|Santa Barbara|CA|93101|34.4266787|-119.7111968|5.0|7|0|"ByAppointmentOnly":"True"}|Doctors, Traditional Chinese Medicine, Naturopathic/Holistic, Acupuncture, Health & Medical, Nutritionists|ull}|
+|mpf3x-BjTdTEA3yCZrAYPw|The UPS Store|87 Grasso Plaza Shopping Center|Affton|MO|63123|38.551126|-90.335695|3.0|15|1|"BusinessAcceptsCreditCards":"True"}|Shipping Centers, Local Services, Notaries, Mailbox Centers, Printing Services|"Monday":"0:0-0:0|
+|tUFrWirKiKi_TAnsVWINQQ|Target|5255 E Broadway Blvd|Tucson|AZ|85711|32.223236|-110.880452|3.5|22|0|"BikeParking":"True|True|2|
+|MTSW4McQd7CbVtyjqoe9mw|St Honore Pastries|935 Race St|Philadelphia|PA|19107|39.9555052|-75.1555641|4.0|80|1|"RestaurantsDelivery":"False|False|False|
+|mWMc6_wTdE0EUBKIGXDVfA|Perkiomen Valley Brewery|101 Walnut St|Green Lane|PA|18054|40.3381827|-75.4716585|4.5|13|1|"BusinessAcceptsCreditCards":"True|True|True|
+|CF33F8-E6oudUQ46HnavjQ|Sonic Drive-In|615 S Main St|Ashland City|TN|37015|36.269593|-87.058943|2.0|6|1|"BusinessParking":"None|True|u'casual'|
+|...|
+
+Attribute columns I left untouched.
  
 Similarly, I did this to the other four tables.
 One exception was the second table. It was more complicated. A recursive query was needed to clean up the data. The first column had the business_id; 
@@ -146,17 +151,15 @@ FROM split_dates s
 WHERE s.Checkin_Date IS NOT NULL AND s.Checkin_Date != '';
 ```
 The result:
-![BeforeandAfter])(https://github.com/ronalds141/SQL-Portfolio/blob/main/Before%20and%20After.png)
+![BeforeandAfter](https://github.com/ronalds141/SQL-Portfolio/blob/main/Before%20and%20After.png)
 
 
 ## ER Diagram
----
 ER Diagram was created with an online ER diagram maker - [DBDiagram.io](https://dbdiagram.io/home/).
 ![ER Diagram.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/ER%20Diagram.png)
 
 
 ## The Queries
----
 
 Each query in this project was designed to explore specific aspects of restaurant performance, customer preferences, and review trends.
 
@@ -261,6 +264,7 @@ A sample from the results:
 |AZ|Baja Cafe|1074|3|
 |AZ|Serial Grillers|986|4|
 |AZ|Street- Taco and Beer Co.|805|5|
+|...|
 
 
 ### What cuisines receive the most reviews and the highest average ratings?
@@ -300,6 +304,7 @@ AI was used to receive the cuisine type for each restaurant, since it was not pr
 | AZ    | Tucson        | Tumerico                        | Mexican (Vegan)             |
 | AZ    | Tucson        | Seis Kitchen                    | Mexican                     |
 | CA    | Santa Barbara | Los Agaves                      | Mexican                     |
+|...|
 
 Pivot Chart that summarizes this table:
 ![CuisineType.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/CuisineType.png)
@@ -332,6 +337,7 @@ This data set doesn't include the price range of these restaurants. AI again was
 | CA    | Santa Barbara | Mesa Verde                      | Average        |
 | CA    | Santa Barbara | McConnells Fine Ice Creams      | Cheap          |
 | CA    | Santa Barbara | The Palace Grill                | Expensive      |
+|...|
 
 The summary of the data using pivot tables:
 
@@ -371,6 +377,7 @@ A sample from the result:
 |BEAST Craft BBQ|1.0|The food is dry and tasteless. The whole operation appears to be run by teenagers and the food and service show it! Not recommended.|
 |Baja Cafe|1.0|We tried to eat at Baja Cafe last night, since all available information said they were open for dinner (their website, yelp, etc.). When we arrived, there were several other annoyed patrons leaving, as the restaurant is clearly not actually open for dinner on Friday and Saturday nights, contrary to what they advertise. This wouldn't be a huge deal, but we drove 35 minutes just to eat here. I emailed the owner that night to let them know, and received an email saying I should have known better somehow (how?!) and they just haven't gotten around to updating their website. She was curt and unapologetic, which makes it clear she doesn't care about lost business. I'll be taking my money and time elsewhere.|
 |Baja Cafe|1.0|Ordered the corned beef with eggs. What I was attracted to was the "we crispen our hash browns then add the meat". What I got was raw potatoes or damn near. I guess when the kitchen gets really busy and the dollar signs start rolling the quality dips. Not again.|
+|...|
 
 ### How do review counts and ratings change over time for top restaurants?
 ---
@@ -401,22 +408,17 @@ The result would look like this. The count is the number of reviews, that receiv
 ---
 
 # **Conclusions**  
----
 These results confirmed my hypothesis that:
 * Averagely priced and cheaper priced restaurants will have more reviews and will be more attended.
 * More well-known cuisines will be more beloved than niche cuisines.
 * It's important to listen to the customers, since reviews greatly affect the performance of the restaurants. 
 
 # **What I Learned**  
----
 - **Advanced SQL Skills**: Learned to clean data, join multiple tables, use subqueries, and apply CTEs for cleaner, more efficient queries, using ROW_Number functions and lastly recursive commands. 
 - **Data Visualization & Reporting**: Used Excel and Power Query to clean, transform, and consolidate results from SQL queries, creating interactive charts and dashboards for clear storytelling.  
 - **Insight Generation**: Converted millions of raw data points into actionable insights, such as identifying top cuisines, price to performance ratio and client insights to help business owners make the best restaurant.  
 
----
-
 ## What else could have  been done
----
 * This dataset contains Latitude and Longitude for each business. With this information, one could explore:
   * *Restaurant Density Heatmaps*: Identify “food clusters” in cities using geospatial clustering (e.g., DBSCAN).
   * *Travel Distance Analysis*: Calculate the  average distance between a user’s reviews to see how far they travel for food.
