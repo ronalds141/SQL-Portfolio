@@ -16,7 +16,7 @@ The dataset contains over **6,000,000 business reviews** from **150'346 business
 The main focus of this research is **restaurants** — exploring their ratings, popularity, and customer feedback trends.  
 Some tables exceeding **15,000,000** rows.  
 
-![msedge_EReYpbqCQX.png](jb-image:img_1769687011601_3367465a7b35c)  
+![Dataset.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/msedge_EReYpbqCQX.png)
 
 ### **Questions I wanted to answer with my SQL Queries were:**  
 - How many businesses are there in each state in this dataset?
@@ -48,11 +48,12 @@ Some tables exceeding **15,000,000** rows.
 ---
 ## Data Cleanup
 ---
-This, honestly, was the hardest part. It required lots of time to clean up the data and create new tables with recursive queries. Data and the tables grew to convert given **JSON files** to cleaned tables.
+This, honestly, was the hardest part. It required a lot of time to clean up the data and create new tables with recursive queries. Data and the tables grew to convert given **JSON files** to cleaned tables.
 
 ## ER Diagram
 ---
-
+ER Diagram was created with an online ER diagram maker.
+![ER Diagram.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/ER%20Diagram.png)
 
 
 ## The Queries
@@ -185,9 +186,9 @@ This data set doesn't include the price and cuisine type of the restaurant. AI w
 Cheaper and averagely priced restaurants are more beloved than expensive or very expensive restaurants. But what about the cuisine type?
 
 ![CuisineType.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_xqZvWXbY7q.png)
-![WINWORD_fZw2ysh1xU.png](jb-image:img_1769694257364_cb13133fd16158)
+![Pricing.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_fZw2ysh1xU.png)
 
-More common cuisines (American, Mexian and Asian) are more beloved than niche (Deli, Mediterranean) ones. 
+More common cuisines (American, Mexican and Asian) are more beloved than niche (Deli, Mediterranean) ones. 
 
 
 ### What do the worst reviews say about the best-rated restaurants say?
@@ -214,11 +215,22 @@ WHERE ReviewRank <= 5
 ORDER BY Name ASC, Rating_Stars ASC;
 ```
 A sample from the result:
-![WINWORD_07I2ZLsOeJ.png](jb-image:img_1769694636542_9cd06a2d9dbd2)
+|Name|Rating_Stars|Rating_Text|
+|----|------------|-----------|
+|BEAST Craft BBQ|1.0|BEAST Craft was very disappointing.  After eating there, I am very surprised that Sauce included them in their top 11. nOn Wednesday, December 2, we got there later than we expected to after making a very long wrong turn.  Therefore, when they were out of a number of things, it wasn't an issue.  We patronize many of the metro area BBQ spots and this is the norm.  I would not have expected them to be closed at 7:20, though, and that was a distinct possibility after all the comments from the cashier and later from the rest of the staff.   nnFood:n*Pulled Pork sandwich - COLD n*Kielbasa: COLDn*Half chicken:  Lukewarmn*French fries:  Lukewarm. n*Brussels Sprouts - So hot I couldn't even eat them until lastnIt is very hard to judge food that isn't at the correct temperature and it should be a food safety concern.  There is no way the meat or fries were held above 140 degrees!nnAtmosphere gets a zero!  The dining area was quiet with 4 tables occupied including us and since it was quiet, everything in the kitchen seemed amplified.  All the banter between the workers, all the discussions on what they had left and back and forth on if they were closing, what was already on order for the next day.  On two separate occasions the 'F' word was clearly head by everyone in the dining area.  The second time I had stood up to put on my coat and was facing the kitchen entry and watched the girl say it, she then quickly disappeared to her right out of site. My opinion is, I came to eat not to hear the ins and outs of the operation of the restaurant and most definitely not to hear profanity.  I am just thankful no children were present.nnBottom line - no need for me to spend my gas money traveling that distance when the metro area has super BBQ restaurants that, although very casual, have a much more professional atmosphere.|
+|BEAST Craft BBQ|1.0|I will review on the service because I strongly believe this is as important, if not more, than the food. I am one that goes back for take out rather than sit down if the service is lousy. With the Beast, this will probably be the case moving forward. nHere is my experience. So I and the misses are on our vacation and thought it would be a grand idea to try the Beast BBQ since we were in the area. It was at the tail end of lunch time so not a full house. Mind you this is our first time here so was not sure which end of the building is dining and which was self serve bar type. Went in and was greeted by a young lady believe name is Breanna or something around that name. WnAm not sure cause someone else yelled her attention by name. So anyway, she asked with a friendly greeting "dine in or take out". This should have been when I chose take out but, instead, said,"dine in". She led us to the counter which you have to order before any of your party members sit. No big deal cause we have been to Pappy's in St Louis. ( THIS PLACE BY NO MEANS CAN COMPARE TO PAPPY's). As soon as she gets behind the counter to take our order, the switcharoo personality changes. She became less friendly and more annoyed. Again, this is our first time and not familiar with the menu so we had to scan and think for a moment. She seem annoyed that she had to wait. This was at the tail end of lunch and we are the only ones in line. No one was behind us. I asked a question and received a negative attitude. There's this huge menu behind her and she seemed annoyed that she had to be questioned instead of me reading the menu. The wife could not make up her mind cause the menu look so good. The worker just looked away in disgust. I almost thought she may have rolled her eyes is the reason she looked away. She did not make any recommendation or assisted at all in helping us decide. She kept silent. No smiles!!!!! nnOrdered seated and waited for the meal. I was glad to get away from her. I thought she was gonna grow horns and spit fire at us. Now from that experience came an angel in servant clothing. This lady, much older, brought out our meal with a pleasant smile and checked on us every so often. Okay, she may have been the waitress and was her job to do so but at least she played her role correctly. The one behind the counter forgot she was working as a customer service and a representative of The Beast establishment. nnI hope and pray management reads this and have a talk with her. Shame cause I truly enjoyed the food. Brisket was dry but wife loved the pork steak.|
+|BEAST Craft BBQ|1.0|After hearing great things about this place, I thought I'd give it a try today, driving from two towns over. Unfortunately, I left disappointed and hungry. All I wanted was the beef brisket. What kind of barbecue joint runs out of beef brisket at 4:45 on a Sunday afternoon? Can you imagine if Pizza Hut ran out of cheese and pepperoni?  If you're looking something in particular, call ahead...|
+|BEAST Craft BBQ|1.0|What's the deal with always out of ribs!nYour BQ rest buy more ribs. There has to be a print out on Sales tickets showing Sales. Your food is Great, but you could sell more Ribs. Been there three times now for Ribs. None ! Sold out! Maybe review the numbers! Just saying!|
+|BEAST Craft BBQ|1.0|The food is dry and tasteless. The whole operation appears to be run by teenagers and the food and service show it! Not recommended.|
+|Baja Cafe|1.0|We tried to eat at Baja Cafe last night, since all available information said they were open for dinner (their website, yelp, etc.). When we arrived, there were several other annoyed patrons leaving, as the restaurant is clearly not actually open for dinner on Friday and Saturday nights, contrary to what they advertise. This wouldn't be a huge deal, but we drove 35 minutes just to eat here. I emailed the owner that night to let them know, and received an email saying I should have known better somehow (how?!) and they just haven't gotten around to updating their website. She was curt and unapologetic, which makes it clear she doesn't care about lost business. I'll be taking my money and time elsewhere.|
+|Baja Cafe|1.0|Ordered the corned beef with eggs. What I was attracted to was the "we crispen our hash browns then add the meat". What I got was raw potatoes or damn near. I guess when the kitchen gets really busy and the dollar signs start rolling the quality dips. Not again.|
+|Baja Cafe|1.0|I decided to give Baja Cafe a try because the menu looked different and a bit creative.  Huge mistake!! Our waitress took forever to bring us drinks and forgot the water we'd asked for. We sat on the patio. There turned out to be tons of flies, despite the gross fly paper hanging from the roof. It took forever for the waitress to take our order. The food was awful! I thought to go with a safe choice because the first impression was not good. I mean, how hard is it to get eggs, hash browns and bacon right? I ordered The Tower. I did not expect kraft singles. The eggs were a strange consistency and the hash browns had no flavor. My friend ordered chilaquiles. They looked better, but the taste was no bueno. Also, the coffee was super weak and flavorless. The cafe failed on ambience, food quality, and service. I will NOT be returning.|
+|Baja Cafe|1.0|I never write reviews, but we got bad service twice in a row so writing a review felt warranted. I can understand that this place gets super busy, so my husband and I usually order take-out instead of dining in. nnLast week my husband called and ordered food and the person over the phone says that the food will be ready in 20 min. It takes me 25 min to drive there. I actually arrived 30-35 min after the order was placed over the phone and one female said that it wasn't ready yet. I'm thinking no big deal, food should be ready in 5 min, giving them a total of 35-40 min to make a take-out order. I didn't get my food until 30 min later! And the whole time I was standing/sitting there, the workers would look at me and then turn away. No one offered me anything. No one went to see why the order was taking so long. When I got my order, there was no apology, nothing. I told one of the workers who just looked at me to next time tell customers that take-out orders will take at least an hour, and not to lie and say it will take 20 min. Horrible customer service! I would rather have honesty than be lied to and then pretend like nothing's wrong. At least do something for the customer who has been waiting a half hour for take-out and not dine-in. Offer a cup of free coffee, give a free pancake, or just say sorry!nnSo, today we ordered food again over the phone. And this time, I'll just let my husband complain in another post.|
+
 
 ### How do review counts and ratings change over time for top restaurants?
 ---
-This Dataset doesn't include timestamps for the time when the review was given. If it had, then this is the query I would use to find the count of the reviews ranging from 2001 to 2099, to analyze the patterns, if the restaurant is doing better or worse.
+This Dataset doesn't include timestamps for the time when the review was given. If it had, this is the query I would use to find the count of reviews from 2001 to 2099 to analyze patterns and determine whether the restaurant is doing better or worse.
 ```sql
 SELECT 
     bc.Name AS Business_Name,
@@ -240,15 +252,15 @@ ORDER BY
     review_year;
 ```
 The result would look like this:
-![WINWORD_SwpsB3SlN6.png](jb-image:img_1769694950493_2bdf45cc7c0de8)
+![RatingsOverYears.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_SwpsB3SlN6.png)
 
 ---
 
 # **What I Learned**  
 ---
-- 📜 **Advanced SQL Skills**: Learned to clean data, join multiple tables, use subqueries, and apply CTEs for cleaner, more efficient queries, using ROW_Number functions and lastly recursive commands. 
-- 📈 **Data Visualization & Reporting**: Used Excel and Power Query to clean, transform, and consolidate results from SQL queries, creating interactive charts and dashboards for clear storytelling.  
-- 🧠 **Insight Generation**: Converted millions of raw data points into actionable insights, such as identifying top cuisines, price to performance ratio and client insights to help business owners make the best restaurant.  
+- **Advanced SQL Skills**: Learned to clean data, join multiple tables, use subqueries, and apply CTEs for cleaner, more efficient queries, using ROW_Number functions and lastly recursive commands. 
+- **Data Visualization & Reporting**: Used Excel and Power Query to clean, transform, and consolidate results from SQL queries, creating interactive charts and dashboards for clear storytelling.  
+- **Insight Generation**: Converted millions of raw data points into actionable insights, such as identifying top cuisines, price to performance ratio and client insights to help business owners make the best restaurant.  
 
 ---
 
@@ -261,13 +273,13 @@ These results confirmed my hypothesis that:
 
 ## What else could have  been done
 ---
-* 🌎 This dataset contains Latitude and Longitude for each business. With this information, one could explore:
+* This dataset contains Latitude and Longitude for each business. With this information, one could explore:
   * *Restaurant Density Heatmaps*: Identify “food clusters” in cities using geospatial clustering (e.g., DBSCAN).
   * *Travel Distance Analysis*: Calculate the  average distance between a user’s reviews to see how far they travel for food.
   * *Proximity Impact*: Measure if restaurants near tourist attractions or transport hubs have higher ratings.
-* 📚 I barely touched the reviews table. One could extract the main keywords. These results will show what people love and hate the most. This can be done using python wordcloud library.
-* 🥳 Secondly, the reviews don't always paint the full picture. One could also compare the sentiment of the reviews, which range from -1 to +1, to identify what people like most. Python TextBlob or Vader could be used for this.
-* 😠 And lastly, one could look at the worst restaurants to learn from their mistakes. What do people dislike? Why? 
+* I barely touched the reviews table. One could extract the main keywords. These results will show what people love and hate the most. This can be done using python wordcloud library.
+* Secondly, the reviews don't always paint the full picture. One could also compare the sentiment of the reviews, which range from -1 to +1, to identify what people like most. Python TextBlob or Vader could be used for this.
+* And lastly, one could look at the worst restaurants to learn from their mistakes. What do people dislike? Why? 
 
 ### Closing thoughts
 ---
@@ -275,4 +287,4 @@ In this project, I explored Yelp's open business data to find insights about res
 
 This showed me I can complete a data project from start to finish — from raw JSON files to a published GitHub portfolio. I became more proficient in SQL, using filtering, aggregation, joins, and subqueries to turn raw data into valuable insights.
 
-Overall, I improved my SQL skills, strengthened my data cleaning abilities, and developed a business owner mindset.
+Overall, I improved my SQL skills, strengthened my data-cleaning abilities, and developed a business-owner mindset.
