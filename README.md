@@ -1,6 +1,7 @@
 # **Introduction**  
 ---
 
+
 This project is part of my data analytics portfolio, showcasing my ability to work with large, real-world datasets using SQL, Excel, and data visualization tools. I’m passionate about turning raw data into actionable insights and am open to opportunities in data analytics, data science, and even data engineering.
 
 The research subject is the [YELP Open Dataset](https://business.yelp.com/data/resources/open-dataset/).  
@@ -63,14 +64,59 @@ Each query in this project was designed to explore specific aspects of restauran
 ---
 This query returns the number of businesses in each state. 
 ```sql
-SELECT
+SELECT DISTINCT
    State, 
     COUNT(*) OVER (PARTITION BY State) AS Business_Count
 FROM BusinessCLEANED
 ORDER BY Business_Count DESC;
 ```
 The results:
-![WINWORD_XnhrHc2Bgc.png](jb-image:img_1769693597916_5b619ad191e3d8)
+|State|Business_Count|
+|-----|--------------|
+|PA|34039|
+|FL|26330|
+|TN|12056|
+|IN|11247|
+|MO|10913|
+|LA|9924|
+|AZ|9912|
+|NJ|8536|
+|NV|7715|
+|AB|5573|
+|CA|5203|
+|ID|4467|
+|DE|2265|
+|IL|2145|
+|TX|4|
+|CO|3|
+|HI|2|
+|MA|2|
+|WA|2|
+|MI|1|
+|MT|1|
+|NC|1|
+|SD|1|
+|UT|1|
+|VI|1|
+|VT|1|
+|XMS|1|
+
+We could count the states with few restaurants without a query, but I wrote this query, in case the data set was large:
+```sql
+SELECT 
+COUNT(State) AS StatesWithFewRestaurants
+FROM (
+SELECT DISTINCT
+   State, 
+    COUNT(*) OVER (PARTITION BY State) AS Business_Count
+FROM BusinessCLEANED
+ORDER BY Business_Count DESC
+)
+WHERE Business_Count < 5
+```
+|StatesWithFewRestaurants|
+|------------------------|
+|13|
 
 
 We can see that 13 states have only a couple of businesses. Without this knowledge, the results may be skewed. Florida has much higher competition than Texas.
@@ -98,7 +144,24 @@ WHERE StateRank BETWEEN 1 and 10
 ORDER BY State ASC;
 ```
 A sample from the results:
-![WINWORD_gEfdb8v1YE.png](jb-image:img_1769693894749_e9733d7b0ded9)
+|State|Name|Review_Count|Ranking|
+|-----|----|------------|-------|
+|AB|Duchess Bake Shop|486|1|
+|AB|Padmanadi Vegetarian Restaurant|271|2|
+|AB|Chartier|169|3|
+|AB|Izakaya Tomo|151|4|
+|AB|RGE RD|149|5|
+|AB|Cafe Amore Bistro|123|6|
+|AB|La Boule|120|7|
+|AB|Jack's Burger Shack|117|8|
+|AB|Tzin Wine & Tapas|116|9|
+|AB|Italian Centre Shop|114|10|
+|AZ|Prep & Pastry|2126|1|
+|AZ|The Parish|1210|2|
+|AZ|Baja Cafe|1074|3|
+|AZ|Serial Grillers|986|4|
+|AZ|Street- Taco and Beer Co.|805|5|
+
 
 ### What cuisines receive the most reviews and the highest average ratings?
 ---
@@ -121,7 +184,7 @@ This data set doesn't include the price and cuisine type of the restaurant. AI w
 
 Cheaper and averagely priced restaurants are more beloved than expensive or very expensive restaurants. But what about the cuisine type?
 
-![WINWORD_rf7rUEZHzB.png](jb-image:img_1769694240164_598dc4695c0998)
+![CuisineType.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_xqZvWXbY7q.png)
 ![WINWORD_fZw2ysh1xU.png](jb-image:img_1769694257364_cb13133fd16158)
 
 More common cuisines (American, Mexian and Asian) are more beloved than niche (Deli, Mediterranean) ones. 
