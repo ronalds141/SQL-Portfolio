@@ -1,21 +1,21 @@
 # **Introduction**  
 
-This project is part of my data analytics portfolio, showcasing my ability to work with large, real-world datasets using SQL, Excel, and data visualization tools. I’m passionate about turning raw data into actionable insights and am open to opportunities in data analytics, data science, and even data engineering.
+This project is part of my data engineering and analytics portfolio, showcasing my ability to work with large, real-world datasets using SQL, Excel, and data visualization tools. Data science is my new passion, and I'm learning something new every day.
 
 The research subject is the [YELP Open Dataset](https://business.yelp.com/data/resources/open-dataset/).  
 
-The goal of this project was to perform a **comprehensive, end-to-end analysis** of Yelp’s publicly available dataset, with a primary focus on the **restaurant industry**.  
+The goal of this project was to perform a **comprehensive, end-to-end analysis** of YELP’s publicly available dataset, with a primary focus on the **restaurant industry**.  
 The dataset offers a unique opportunity to explore **real-world, large-scale data** containing millions of reviews, detailed business attributes, geolocation data, and customer feedback spanning multiple years.  
 
 ## **The Dataset**  
 
-The dataset contains over **6,000,000 business reviews** from **150'346 businesses** in **27 U.S. states**.  
-The main focus of this research is **restaurants** — exploring their ratings, popularity, and customer feedback trends.  
-Some tables exceeding **15,000,000** rows.  
+The dataset contains over **6,000,000 business reviews** for **150'346 businesses** in **27 U.S. states**.  
+The main focus of this research is **restaurants** — exploring their ratings, popularity, and customer reviews.  
+One table exceeds **15,000,000** rows.  
 
 ![Dataset.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/msedge_EReYpbqCQX.png)
 
-### **Questions I wanted to answer with my SQL Queries were:**  
+### **Questions I want to answer with my SQL Queries:**  
 - How many businesses are there in each state in this dataset?
 - Which ten restaurants are the best in each state?  
 - What cuisines receive the most reviews and the highest average ratings?  
@@ -48,7 +48,7 @@ The columns didn’t have column names and looked like this:
 "business_id": "tnhfDv5Il8EaGSXZGiuQGg"|"name": "Garaje"|"address": "475 3rd St"|...
 ...
 
-Before I could clean the data, I had to create new tables for each given table with the correct Column Names and data types.
+Before I could clean the data, I had to create new tables for each given table with the correct column names and data types.
 
 ### Table Creation
 ---
@@ -71,7 +71,7 @@ CREATE TABLE YELP_RestaurantsCLEANED (
     Attributes3 TEXT
 );
 ```
-Now, the data cleaning. The following query was used:
+For cleaning the data, the following query was used:
 ```sql
 INSERT INTO YELP_RestaurantsCLEANED (
     Business_id, Name, Address, City, State, Postal_Code,
@@ -155,7 +155,8 @@ The result:
 
 
 ## ER Diagram
-ER Diagram was created with an online ER diagram maker - [DBDiagram.io](https://dbdiagram.io/home/).
+I created this ER Diagram in an online ER diagram maker - [DBDiagram.io](https://dbdiagram.io/home/).
+<br><br>
 ![ER Diagram.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/ER%20Diagram.png)
 
 
@@ -204,7 +205,7 @@ The results:
 |VT|1|
 |XMS|1|
 
-We could count the states with few restaurants without a query, but I wrote this query, in case the data set was large:
+We could count the states with few restaurants without using SQL, but I wrote this query in case the data set was large:
 ```sql
 SELECT 
 COUNT(State) AS StatesWithFewRestaurants
@@ -222,7 +223,7 @@ WHERE Business_Count < 5
 |13|
 
 
-We can see that 13 states have only a couple of businesses. Without this knowledge, the results may be skewed. Florida has much higher competition than Texas.
+We can see that 13 states have only a couple of businesses (fewer than 5). Without this knowledge, the results may be skewed. Florida (with 26k businesses) has much higher competition than Texas (4 businesses).
 
 
 ### Which ten restaurants are the best in each state?  
@@ -269,7 +270,7 @@ A sample from the results:
 
 ### What cuisines receive the most reviews and the highest average ratings?
 ---
-The hypothesis was that middle-priced or cheaper-priced restaurants will be more beloved than expensive ones and that also, the cuisine will be more streamlined to what people like, rather than something exquisite. Before doing the analysis, I removed businesses that weren’t restaurants:
+Before doing the analysis, I removed businesses that weren’t restaurants:
 * Travis Darnell Photography (Photography)
 * 2 Sisters Photography (Photography)
 * City Museum (Attraction/Museum)
@@ -280,7 +281,7 @@ The hypothesis was that middle-priced or cheaper-priced restaurants will be more
 * All Service Citgo (Gas Station)
 * Valvoline Instant Oil Change (Car Service)
 
-AI was used to receive the cuisine type for each restaurant, since it was not provided with the dataset. Sample output:
+AI was used to receive the cuisine type for each restaurant. Sample output:
 | State | City          | Business Name                   | Food Type                   |
 | ----- | ------------- | ------------------------------- | --------------------------- |
 | AB    | Edmonton      | Duchess Bake Shop               | Bakery (French)             |
@@ -310,7 +311,7 @@ Pivot Chart that summarizes this table:
 ![CuisineType.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/CuisineType.png)
 ### Are there patterns between restaurant price range, cuisine, and customer ratings?
 ---
-This data set doesn't include the price range of these restaurants. AI again was used to find these restaurants in Google Maps and to retrieve the price category of each restaurant Power Query was used to clean this data, and pivot tables were  used to represent this data:
+This data set doesn't include the price range of these restaurants. AI again was used to find these restaurants in Google Maps and to retrieve the price category of each restaurant. Power Query was used to clean this data, and pivot tables were used to represent this data:
 | State | City          | Business Name                   | Price Category |
 | ----- | ------------- | ------------------------------- | -------------- |
 | AB    | Edmonton      | Duchess Bake Shop               | Average        |
@@ -344,7 +345,7 @@ The summary of the data using pivot tables:
 ![CuisineType.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_xqZvWXbY7q.png)
 ![Pricing.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_fZw2ysh1xU.png)
 
-Result - More common cuisines (American, Mexican and Asian) are more beloved than niche (Deli, Mediterranean) ones. 
+Result - More common cuisines (American, Mexican, and Asian) are more beloved than niche (Deli, Mediterranean) ones. 
 
 
 ### What do the worst reviews say about the best-rated restaurants say?
@@ -381,7 +382,8 @@ A sample from the result:
 
 ### How do review counts and ratings change over time for top restaurants?
 ---
-This Dataset doesn't include timestamps for the time when the review was given. If it had, this is the query I would use to find the count of reviews from 2001 to 2099 to analyze patterns and determine whether the restaurant is doing better or worse.
+This Dataset doesn't include timestamps for the time when the rating was given. 
+If it had, this is the query I would use to find the count of reviews from 2001 to 2099 to analyze patterns and determine whether the restaurant is doing better or worse.
 ```sql
 SELECT 
     bc.Name AS Business_Name,
@@ -402,7 +404,7 @@ GROUP BY
 ORDER BY 
     review_year;
 ```
-The result would look like this. The count is the number of reviews, that received 4.5 and 5.0 stars:
+The result would look like this. The count is the number of ratings that received 4.5 and 5.0 stars:
 ![RatingsOverYears.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_SwpsB3SlN6.png)
 
 ---
@@ -418,7 +420,7 @@ These results confirmed my hypothesis that:
 - **Data Visualization & Reporting**: Used Excel and Power Query to clean, transform, and consolidate results from SQL queries, creating interactive charts and dashboards for clear storytelling.  
 - **Insight Generation**: Converted millions of raw data points into actionable insights, such as identifying top cuisines, price to performance ratio and client insights to help business owners make the best restaurant.  
 
-## What else could have  been done
+## What else could have been done
 * This dataset contains Latitude and Longitude for each business. With this information, one could explore:
   * *Restaurant Density Heatmaps*: Identify “food clusters” in cities using geospatial clustering (e.g., DBSCAN).
   * *Travel Distance Analysis*: Calculate the  average distance between a user’s reviews to see how far they travel for food.
@@ -429,8 +431,8 @@ These results confirmed my hypothesis that:
 
 ### Closing thoughts
 ---
-In this project, I explored Yelp's open business data to find insights about restaurants, customer preferences, and business performance. I cleaned and prepared the dataset, then used SQL to answer questions like which restaurants have the highest ratings, which cuisines are most popular, and whether price correlates to customer satisfaction.
+In this project, I explored Yelp's open business data to find insights about restaurants and customer preferences. I cleaned and prepared the dataset, then used SQL to answer questions like which restaurants have the highest ratings, which cuisines are most popular, and whether price correlates to customer satisfaction.
 
-This showed me I can complete a data project from start to finish — from raw JSON files to a published GitHub portfolio. I became more proficient in SQL, using filtering, aggregation, joins, and subqueries.
+This showed me I can complete a data project from start to finish — from raw JSON files to a published GitHub portfolio. I became more proficient in SQL filtering, aggregation, joins, and subqueries.
 
-Overall, I improved my SQL skills, strengthened my data-cleaning abilities, and developed a business-owner mindset.
+This was a great project. I am excited for what the future will bring. Now let's focus on Python, ETL Pipelines, and Cloud services. 
