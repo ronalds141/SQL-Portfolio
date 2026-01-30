@@ -52,7 +52,7 @@ This, honestly, was the hardest part. It required a lot of time to clean up the 
 
 ## ER Diagram
 ---
-ER Diagram was created with an online ER diagram maker.
+ER Diagram was created with an online ER diagram maker - [DBDiagram.io](https://dbdiagram.io/home/).
 ![ER Diagram.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/ER%20Diagram.png)
 
 
