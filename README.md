@@ -177,18 +177,69 @@ The hypothesis was that middle-priced or cheaper-priced restaurants will be more
 * All Service Citgo (Gas Station)
 * Valvoline Instant Oil Change (Car Service)
 
+AI was used to receive the cuisine type for each restaurant, since it was not provided with the dataset. Sample output:
+| State | City          | Business Name                   | Food Type                   |
+| ----- | ------------- | ------------------------------- | --------------------------- |
+| AB    | Edmonton      | Duchess Bake Shop               | Bakery (French)             |
+| AB    | Edmonton      | Padmanadi Vegetarian Restaurant | Asian (Vegan)               |
+| AB    | Beaumont      | Chartier                        | French                      |
+| AB    | Edmonton      | Izakaya Tomo                    | Asian (Japanese)            |
+| AB    | Edmonton      | RGE RD                          | American (Canadian)         |
+| AB    | Edmonton      | Cafe Amore Bistro               | Italian                     |
+| AB    | Edmonton      | La Boule                        | Bakery (French)             |
+| AB    | St Albert     | Jacks Burger Shack              | American (Burgers)          |
+| AB    | Edmonton      | Tzin Wine & Tapas               | Mediterranean               |
+| AB    | Edmonton      | Italian Centre Shop             | Deli/Italian                |
+| AZ    | Tucson        | Prep & Pastry                   | American (Brunch)           |
+| AZ    | Tucson        | The Parish                      | Southern/Cajun              |
+| AZ    | Tucson        | Baja Cafe                       | American (Brunch)           |
+| AZ    | Tucson        | Serial Grillers                 | American (Pizza/Sandwiches) |
+| AZ    | Tucson        | Street- Taco and Beer Co.       | Mexican                     |
+| AZ    | Tucson        | Wildflower                      | American                    |
+| AZ    | Tucson        | Bobos Restaurant                | American (Breakfast)        |
+| AZ    | Tucson        | Baja Cafe on Campbell           | American (Brunch)           |
+| AZ    | Tucson        | Tumerico                        | Mexican (Vegan)             |
+| AZ    | Tucson        | Seis Kitchen                    | Mexican                     |
+| CA    | Santa Barbara | Los Agaves                      | Mexican                     |
 
+Pivot Chart that summarizes this table:
+![CuisineType.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/CuisineType.png)
 ### Are there patterns between restaurant price range, cuisine, and customer ratings?
 ---
-This data set doesn't include the price and cuisine type of the restaurant. AI was used to find these restaurants in Google Maps and to retrieve the price category and food type served. Power Query was used to clean this data, and pivot tables were  used to represent this data:
-![WINWORD_xqZvWXbY7q.png](jb-image:img_1769694131026_2e93273d028c9)
+This data set doesn't include the price range of these restaurants. AI again was used to find these restaurants in Google Maps and to retrieve the price category of each restaurant Power Query was used to clean this data, and pivot tables were  used to represent this data:
+| State | City          | Business Name                   | Price Category |
+| ----- | ------------- | ------------------------------- | -------------- |
+| AB    | Edmonton      | Duchess Bake Shop               | Average        |
+| AB    | Edmonton      | Padmanadi Vegetarian Restaurant | Average        |
+| AB    | Beaumont      | Chartier                        | Expensive      |
+| AB    | Edmonton      | Izakaya Tomo                    | Average        |
+| AB    | Edmonton      | RGE RD                          | Expensive      |
+| AB    | Edmonton      | Cafe Amore Bistro               | Average        |
+| AB    | Edmonton      | La Boule                        | Average        |
+| AB    | St Albert     | Jacks Burger Shack              | Average        |
+| AB    | Edmonton      | Tzin Wine & Tapas               | Expensive      |
+| AB    | Edmonton      | Italian Centre Shop             | Cheap          |
+| AZ    | Tucson        | Prep & Pastry                   | Average        |
+| AZ    | Tucson        | The Parish                      | Average        |
+| AZ    | Tucson        | Baja Cafe                       | Average        |
+| AZ    | Tucson        | Serial Grillers                 | Average        |
+| AZ    | Tucson        | Street- Taco and Beer Co.       | Cheap          |
+| AZ    | Tucson        | Wildflower                      | Expensive      |
+| AZ    | Tucson        | Bobos Restaurant                | Cheap          |
+| AZ    | Tucson        | Baja Cafe on Campbell           | Average        |
+| AZ    | Tucson        | Tumerico                        | Average        |
+| AZ    | Tucson        | Seis Kitchen                    | Average        |
+| CA    | Santa Barbara | Los Agaves                      | Average        |
+| CA    | Santa Barbara | Mesa Verde                      | Average        |
+| CA    | Santa Barbara | McConnells Fine Ice Creams      | Cheap          |
+| CA    | Santa Barbara | The Palace Grill                | Expensive      |
 
-Cheaper and averagely priced restaurants are more beloved than expensive or very expensive restaurants. But what about the cuisine type?
+The summary of the data using pivot tables:
 
 ![CuisineType.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_xqZvWXbY7q.png)
 ![Pricing.png](https://github.com/ronalds141/SQL-Portfolio/blob/main/WINWORD_fZw2ysh1xU.png)
 
-More common cuisines (American, Mexican and Asian) are more beloved than niche (Deli, Mediterranean) ones. 
+Result - More common cuisines (American, Mexican and Asian) are more beloved than niche (Deli, Mediterranean) ones. 
 
 
 ### What do the worst reviews say about the best-rated restaurants say?
