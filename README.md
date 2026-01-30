@@ -42,13 +42,112 @@ Some tables exceeding **15,000,000** rows.
 
 ## Hypothesis
 ---
-
+1. Mid-priced restaurants will receive higher average ratings than expensive restaurants, as affordability often correlates with broader customer satisfaction;
+2. Food type will directly correlate to customer satisfaction. Niche food types will be less liked than general cuisines;
+3. User reviews are the driving force behind restaurant success or failure. 
 
 
 ---
 ## Data Cleanup
 ---
-This, honestly, was the hardest part. It required a lot of time to clean up the data and create new tables with recursive queries. Data and the tables grew to convert given **JSON files** to cleaned tables.
+This, honestly, was the hardest part. It required a lot of time to clean up the data and create new tables with recursive queries. 
+The data came as JSON files and was imported into DBeaver Database Manager.
+The columns didn’t have column names and looked like this:
+
+
+Before I could clean the data, I had to create new tables for each given table with the correct Column Names and data types.
+
+### Table Creation
+---
+An example of how a single table was created:
+```sql
+CREATE TABLE YELP_RestaurantsCLEANED (
+    Business_id TEXT PRIMARY KEY,
+    Name TEXT,
+    Address TEXT,
+    City TEXT,
+    State TEXT,
+    Postal_Code TEXT,
+    Latitude REAL,
+    Longitude REAL,
+    Rating_stars REAL,
+    Review_Count INTEGER,
+    Is_Open INTEGER,
+    Attributes TEXT,
+    Attributes2 TEXT,
+    Attributes3 TEXT
+);
+```
+Now, the data cleaning. The following query was used:
+```sql
+INSERT INTO YELP_RestaurantsCLEANED (
+    Business_id, Name, Address, City, State, Postal_Code,
+    Latitude, Longitude, Rating_stars, Review_Count, Is_Open,
+    Attributes, Attributes2, Attributes3
+)
+SELECT
+    SUBSTRING(Column1, INSTR(Column1, ':') + 2) AS Business_id,
+    SUBSTRING(Column2, INSTR(Column2, ':') + 2) AS Name,
+    SUBSTRING(Column3, INSTR(Column3, ':') + 2) AS Address,
+    SUBSTRING(Column4, INSTR(Column4, ':') + 2) AS City,
+    SUBSTRING(Column5, INSTR(Column5, ':') + 2) AS State,
+    SUBSTRING(Column6, INSTR(Column6, ':') + 2) AS Postal_Code,
+    SUBSTRING(Column7, INSTR(Column7, ':') + 1) AS Latitude,
+    SUBSTRING(Column8, INSTR(Column8, ':') + 1) AS Longitude,
+    SUBSTRING(Column9, INSTR(Column9, ':') + 1) AS Rating_Stars,
+    SUBSTRING(Column10, INSTR(Column10, ':') + 1) AS Review_Count,
+    SUBSTRING(Column11, INSTR(Column11, ':') + 1) AS Is_Open,
+    SUBSTRING(Column12, INSTR(Column12, ':') + 2) AS Attributes,
+    SUBSTRING(Column13, INSTR(Column13, ':') + 2) AS Attributes2,
+    SUBSTRING(Column14, INSTR(Column14, ':') + 2) AS Attributes3
+FROM
+    YELP_Restaurants;
+```
+ 
+Similarly, I did this to the other four tables.
+One exception was the second table. It was more complicated. A recursive query was needed to clean up the data. The first column had the business_id; 
+however, the second column had all the check-in dates in one row. So, data “exploding” and “imploding” was needed.
+
+This query was much more complicated and ran for about 30 minutes and generated over 15'000'000 rows:
+```sql
+CREATE TABLE CheckinCLEANED (
+    Business_Id TEXT
+    Checkin_Date DATETIME 
+);
+WITH RECURSIVE
+prepared_data AS (
+    SELECT
+        Column1 AS Business_Id,
+        Column2 || ', ' AS date_string
+    FROM Checkin
+),
+split_dates(Business_Id, Checkin_Date, remaining_dates) AS (
+    SELECT
+        p.Business_Id,
+        TRIM(SUBSTR(p.date_string, 1, INSTR(p.date_string, ',') - 1)),
+        SUBSTR(p.date_string, INSTR(p.date_string, ',') + 1)
+    FROM prepared_data p
+   
+    UNION ALL
+ 
+    SELECT
+        s.Business_Id,
+        TRIM(SUBSTR(s.remaining_dates, 1, INSTR(s.remaining_dates, ',') - 1)),
+        SUBSTR(s.remaining_dates, INSTR(s.remaining_dates, ',') + 1)
+    FROM split_dates s
+    WHERE INSTR(s.remaining_dates, ',') > 0
+)
+ 
+INSERT INTO CheckinCLEANED (Business_Id, Checkin_Date)
+SELECT
+    SUBSTRING(s.Business_Id, INSTR(s.Business_Id, ':') + 2) AS Business_Id,
+    SUBSTRING(s.Checkin_Date, INSTR(s.Checkin_Date, ':') + 2) AS Checkin_Date
+FROM split_dates s
+WHERE s.Checkin_Date IS NOT NULL AND s.Checkin_Date != '';
+```
+The result:
+![BeforeandAfter])(https://github.com/ronalds141/SQL-Portfolio/blob/main/Before%20and%20After.png)
+
 
 ## ER Diagram
 ---
@@ -328,8 +427,8 @@ These results confirmed my hypothesis that:
 
 ### Closing thoughts
 ---
-In this project, I explored Yelp's open business data to find insights about restaurants, customer preferences, and business performance. I cleaned and prepared the dataset, then used SQL to answer questions like which restaurants have the highest ratings, which cuisines are most popular, and how review counts relate to customer satisfaction.
+In this project, I explored Yelp's open business data to find insights about restaurants, customer preferences, and business performance. I cleaned and prepared the dataset, then used SQL to answer questions like which restaurants have the highest ratings, which cuisines are most popular, and whether price correlates to customer satisfaction.
 
-This showed me I can complete a data project from start to finish — from raw JSON files to a published GitHub portfolio. I became more proficient in SQL, using filtering, aggregation, joins, and subqueries to turn raw data into valuable insights.
+This showed me I can complete a data project from start to finish — from raw JSON files to a published GitHub portfolio. I became more proficient in SQL, using filtering, aggregation, joins, and subqueries.
 
 Overall, I improved my SQL skills, strengthened my data-cleaning abilities, and developed a business-owner mindset.
