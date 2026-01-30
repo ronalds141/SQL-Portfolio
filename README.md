@@ -435,4 +435,4 @@ In this project, I explored Yelp's open business data to find insights about res
 
 This showed me I can complete a data project from start to finish — from raw JSON files to a published GitHub portfolio. I became more proficient in SQL filtering, aggregation, joins, and subqueries.
 
-This was a great project. I am excited for what the future will bring. Now let's focus on Python, ETL Pipelines, and Cloud services. 
+This was a great project. I am excited for what the future will bring! Now let's focus on Python, ETL Pipelines, and Cloud services. 
